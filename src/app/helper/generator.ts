@@ -20,7 +20,26 @@ export const getKeyAcpect = (fields: LifeFields) => {
   return entries[0][0];
 };
 
+export const getAverageRate = (rating: LifeFields) => {
+  return (rating.career + rating.health + rating.love) / 3;
+}
+
 export const isAvarageRatingForCat = (rating: LifeFields) => {
-  const average = (rating.career + rating.health + rating.love) / 3;
+  const average = getAverageRate(rating);
+
   return average <= 5;
 };
+
+export const getMaxField = (rating: LifeFields): string => {
+  let maxKey: keyof LifeFields = "love";
+  let maxValue = rating[maxKey];
+
+  for (const key in rating) {
+    if (rating[key as keyof LifeFields] > maxValue) {
+      maxKey = key as keyof LifeFields;
+      maxValue = rating[key as keyof LifeFields];
+    }
+  }
+
+  return maxKey;
+}

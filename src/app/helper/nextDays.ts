@@ -34,11 +34,13 @@ export const getNextDays = (numberOfDays: number): AdaptedDate[] => {
 
 export const getStrDate = (adaptedDate: AdaptedDate) => {
   const strDayNum = adaptedDate.day.padStart(2, "0");
+  const monthEntry = Object.entries(monthGenitiveMap)
+    .find(([, value]) => value === adaptedDate.month);
 
-  const strMonthNum = Object.entries(monthGenitiveMap)
-    .find(([, value]) => value === adaptedDate.month)?.[0]
-    .toString()
-    .padStart(2, "0");
+  if (!monthEntry) return "00-00";
+
+  const monthIndex = parseInt(monthEntry[0], 10);
+  const strMonthNum = String(monthIndex + 1).padStart(2, "0");
 
   return `${strDayNum}-${strMonthNum}`;
 };
