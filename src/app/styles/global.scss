@@ -1,0 +1,76 @@
+@font-face {
+  font-family: Montserrat-Alternates, sans-serif;
+  src: url(../fonts/MontserratAlternates/MontserratAlternates-Thin.ttf);
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: Montserrat-Alternates, sans-serif;
+  src: url(../fonts/MontserratAlternates/MontserratAlternates-ExtraLight.ttf);
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: Montserrat-Alternates, sans-serif;
+  src: url(../fonts/MontserratAlternates/MontserratAlternates-Regular.ttf);
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Montserrat-Alternates, sans-serif;
+  src: url(../fonts/MontserratAlternates/MontserratAlternates-SemiBold.ttf);
+  font-weight: 600;
+}
+
+:root {
+  --primary-color: #2c2c2c;
+  --secondary-color: #E6D8C7;
+  // --secondary-color-opacity: rgba(230, 216, 199, 0.8);
+  --accent-color: #9ECCFA;
+  --main-color: #F8F3EA;
+  --bg-color: #ffffff;
+  --not-active: #9e9e9e;
+}
+
+h1, h2, h3, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: Montserrat-Alternates, sans-serif;
+  box-sizing: border-box;
+}
+
+button {
+  all: unset;
+  padding: 0;
+  outline: none;
+  background-color: none;
+  color: none;
+  border: none;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+
+  padding: 0;
+  margin: 0;
+
+  font: inherit;
+  color: inherit;
+
+  cursor: pointer;
+
+  &::-ms-expand {
+    display: none;
+  }
+}

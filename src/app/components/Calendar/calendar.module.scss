@@ -1,0 +1,23 @@
+.calendar {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  bottom: 50px;
+
+  &__list {
+    display: grid;
+    gap: 5px;
+    list-style: none;
+    max-width: 1000px;
+    margin: 0 auto;
+    grid-template-columns: repeat(7, 1fr);
+
+    &--three {
+      display: grid;
+      list-style: none;
+      max-width: 1000px;
+      margin: 0 auto;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}

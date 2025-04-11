@@ -2,7 +2,7 @@ import { ZodiacInfo, Zodiacs } from "../types/zodiacs";
 
 export const ZODIAC_DATA: Record<Zodiacs, ZodiacInfo> = {
   [Zodiacs.Capricorn]: {
-    name: "Козоріг",
+    name: "Козеріг",
     dateRange: { from: "12-22", to: "01-19" },
     icon: "<></>, // замінити на <CapricornIcon />",
     image: "/images/zodiacs/Capricorn.jpg",

@@ -1,25 +1,20 @@
-import HomePage from "./components/Home";
-import { HoroscopeProvider } from "./Context/horoscopeContext";
+import "./styles/global.scss";
+import { HoroscopeProvider } from "./context/horoscopeContext";
+import { Header } from "./components/Header/Header";
+import { Footer } from "./components/Footer/Footer";
+import { Home } from "./components/Home/Home";
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
       <body style={{ margin: "0" }}>
         <HoroscopeProvider>
-          <header>
-            <h1>Гороскопи</h1>
-          </header>
-            <main>
-              <div className="w-1/2 p-4 border-r">
-                <HomePage />
-              </div>
-              <div className="w-1/2 p-4">
-                {children}
-              </div>
-            </main>
-          <footer>
-            <p>© 2023 Гороскопи</p>
-          </footer>
+          <Header />
+          <main>
+            <Home />
+            <div>{children}</div>
+          </main>
+          <Footer />
         </HoroscopeProvider>
       </body>
     </html>

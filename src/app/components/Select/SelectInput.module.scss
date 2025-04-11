@@ -1,0 +1,74 @@
+.dropdown {
+  &__input {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 24px;
+
+    &::after {
+      content: url(../../assets/icons/arrow--disabled.svg);
+      position: absolute;
+      display: inline-block;
+      height: 16px;
+      width: 16px;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-115%) rotate(90deg);
+    }
+
+    &--focused::after {
+      transform:translateY(-115%)  rotate(270deg);
+    }  
+
+    &-label {
+      font-family: Montserrat-Alternates, sans-serif;
+      color: var(--primary-color);
+    }
+  }
+
+  &__select {
+    font-family: Montserrat-Alternates, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 30px;
+    color: var(--not-active);
+    background-color: transparent;
+    height: 30px;
+    width: 120px;
+    padding-left: 8px;
+    border: 0.5px solid var(--not-active);
+    border-radius: 8px;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    &:hover {
+      border-color: var(--secondary-color);
+    }
+    &:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+  }
+
+  &__option {
+    border: 1px solid blue;
+    box-shadow: 0 2px 15px 0 #0000000D;
+    background-color: transparent;
+    border-radius: none;
+    color: var(--primary-color);
+    font-family: Montserrat-Alternates, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    text-align: left;
+    height: 32px;
+    padding-block: 5px;
+    &:hover {
+      color: red;
+      background-color: green;
+    }
+  }
+}

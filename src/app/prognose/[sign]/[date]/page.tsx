@@ -1,5 +1,6 @@
 import { CopyLinkButton } from "@/app/components/copyLinkButton";
 import { lifeFieldsPrediction } from "@/app/data/lifeFieldsData";
+import styles from './zodiacPredictionPage.module.scss';
 import { MAX_RATE_IMAGES } from "@/app/data/maxRateData";
 import { ZODIAC_DATA } from "@/app/data/zodiacData";
 import { generateLifeFieldsRate, getMaxField } from "@/app/helper/generator";
@@ -20,7 +21,7 @@ const ZodiacPredictionPage = async ({ params }: PageProps) => {
   const moodImage = MAX_RATE_IMAGES[getMaxField(zodiacRates)];
 
   return (
-    <div className="zodiac">
+    <div className={styles.zodiac}>
       <h2>{`Гороскоп для ${ZODIAC_DATA[sign].name} на ${date}`}</h2>
 
       <div className="zodiac__images">

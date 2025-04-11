@@ -4,29 +4,41 @@ import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import cn from "classnames";
 import Image from "next/image";
+import styles from "./home.module.scss";
 
-import { Zodiacs } from "../types/zodiacs";
-import { AdaptedDate } from "../types/date";
+import { Zodiacs } from "../../types/zodiacs";
+import { AdaptedDate } from "../../types/date";
 
-import { generateLifeFieldsRate, isAvarageRatingForCat } from "../helper/generator";
-import { getNextDays, getStrDate } from "../helper/nextDays";
-import { getCurrentDate } from "../helper/curentDate";
-import { ZODIAC_DATA } from "../data/zodiacData";
+import {
+  generateLifeFieldsRate,
+  isAvarageRatingForCat,
+} from "../../helper/generator";
+import { getNextDays, getStrDate } from "../../helper/nextDays";
+import { getCurrentDate } from "../../helper/curentDate";
+import { ZODIAC_DATA } from "../../data/zodiacData";
 
-import { useHoroscope } from "../Context/horoscopeContext";
+import { useHoroscope } from "../../context/horoscopeContext";
+import { SelectInput } from "../Select/SelectInput";
+import { Calendar } from "../Calendar/Calendar";
 
 const DEFAULT_ZODIAC = Zodiacs.Aries;
 const DEFAULT_DAYS = 7;
 
-const HomePage = () => {
-
+export const Home = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const zodiacFromUrl = searchParams.get("zodiac") as Zodiacs;
   const dateFromUrl = searchParams.get("date");
 
-  const { selectedZodiac, setSelectedZodiac, selectedDate, setSelectedDate, setZodiacRates,zodiacRates } = useHoroscope();
+  const {
+    selectedZodiac,
+    setSelectedZodiac,
+    selectedDate,
+    setSelectedDate,
+    setZodiacRates,
+  } = useHoroscope();
+
   const [numberOfDays, setNumberOfDays] = useState(DEFAULT_DAYS);
   const [nextDaysArr, setNextDaysArr] = useState(getNextDays(DEFAULT_DAYS));
   const [darkMode, setDarkMode] = useState(false);
@@ -36,13 +48,16 @@ const HomePage = () => {
     const storedDate = localStorage.getItem("date");
     const storedRates = localStorage.getItem("zodiacRates");
 
-    const initialZodiac = storedZodiac ? JSON.parse(storedZodiac) : DEFAULT_ZODIAC;
+    const initialZodiac = storedZodiac
+      ? JSON.parse(storedZodiac)
+      : DEFAULT_ZODIAC;
     const initialDate = storedDate ? JSON.parse(storedDate) : getCurrentDate();
 
     setSelectedZodiac(initialZodiac);
     setSelectedDate(initialDate);
 
-    if (!storedZodiac) localStorage.setItem("zodiac", JSON.stringify(initialZodiac));
+    if (!storedZodiac)
+      localStorage.setItem("zodiac", JSON.stringify(initialZodiac));
     if (!storedDate) localStorage.setItem("date", JSON.stringify(initialDate));
 
     if (storedRates) {
@@ -52,7 +67,7 @@ const HomePage = () => {
       setZodiacRates(rates);
     }
 
-    router.push(`/prognose/${initialZodiac}/${initialDate}`);;
+    router.push(`/prognose/${initialZodiac}/${initialDate}`);
   }, []);
 
   useEffect(() => {
@@ -77,11 +92,10 @@ const HomePage = () => {
 
   const handleDateClick = (day: AdaptedDate) => {
     const date = getStrDate(day);
-    console.log(date);
     const zodiac = selectedZodiac || DEFAULT_ZODIAC;
     setSelectedDate(date);
     localStorage.setItem("date", JSON.stringify(date));
-    
+
     const rates = generateLifeFieldsRate(date, zodiac);
     setZodiacRates(rates);
     localStorage.setItem("zodiacRates", JSON.stringify(rates));
@@ -90,12 +104,13 @@ const HomePage = () => {
     router.push(`/prognose/${zodiac}/${date}`);
 
     if (cat) {
-      
     }
   };
 
   const handleChangeDaysNumber = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setNumberOfDays(+e.target.value);
+    const newNumberOfDays = +e.target.value;
+    setNumberOfDays(newNumberOfDays);
+    setNextDaysArr(getNextDays(newNumberOfDays));
   };
 
   const handleCancelSelections = () => {
@@ -106,57 +121,57 @@ const HomePage = () => {
   };
 
   return (
-    <div className={cn("home", { "home--dark": darkMode })}>
-      <h1>Гороскоп WARLOCK</h1>
+    <div className={cn(styles.home, { [styles["home--dark"]]: darkMode })}>
+      <h2
+        className={cn(styles.home__title, {
+          [styles["home__title--dark"]]: darkMode,
+        })}
+      >
+        Дізнайся у Warlock, що чекає на тебе
+      </h2>
 
       <button onClick={handleCancelSelections}>Скасувати вибір</button>
 
-      <div className="zodiac__rate-image">
-        <Image alt="твій зодіак" src={ZODIAC_DATA[selectedZodiac].image} width={100} height={100} />
-      </div>
+      <section className={styles.home__top}>
+        <div className={styles["home__top-wrapper"]}>
+          <div className={styles["home__image-circle"]}>
+            <Image
+              className={styles["home__image"]}
+              alt="твій зодіак"
+              src={ZODIAC_DATA[selectedZodiac].image}
+              width={200}
+              height={200}
+            />
+          </div>
 
-      <label htmlFor="zodiacSelect">Знак зодіаку</label>
-      <select onChange={handleZodiacChange} value={selectedZodiac} name="zodiacSelect">
-        {Object.keys(ZODIAC_DATA).map((key) => (
-          <option key={key} value={key}>{ZODIAC_DATA[key as Zodiacs].name}</option>
-        ))}
-      </select>
+          <SelectInput
+            label="Знак зодіаку"
+            value={selectedZodiac}
+            onChangeHandler={handleZodiacChange}
+            isZodiacSelect={true}
+          />
 
-      <label htmlFor="dateSelect">Кількість днів</label>
-      <select onChange={handleChangeDaysNumber} name="dateSelect">
-        <option value="7">7</option>
-        <option value="3">3</option>
-      </select>
+          <SelectInput
+            label="Кількість днів"
+            value={numberOfDays}
+            onChangeHandler={handleChangeDaysNumber}
+            options={[
+              { value: 7, label: "7" },
+              { value: 3, label: "3" },
+            ]}
+          />
 
-      <button className="mode" onClick={() => setDarkMode((prev) => !prev)}>
-        <div className="mode__circle"></div>
-      </button>
-
-      <section className="calendar">
-      <article>
-          <ul>
-            {nextDaysArr.map((day) => (
-              <li key={day.day}>
-                <div className="day">
-                  <button onClick={() => handleDateClick(day)}>
-                    <p>{day.weekday}</p>
-                    <p>{`${day.day} ${day.month}`}</p>
-                    {zodiacRates && getStrDate(day) === selectedDate && (
-                      <ul>
-                        <li>{`Здоров'я: ${zodiacRates.health}`}</li>
-                        <li>{`Стосунки: ${zodiacRates.love}`}</li>
-                        <li>{`Кар'єра: ${zodiacRates.career}`}</li>
-                      </ul>
-                    )}
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </article>
+          <button className="mode" onClick={() => setDarkMode((prev) => !prev)}>
+            <div className="mode__circle"></div>
+          </button>
+        </div>
       </section>
+
+      <Calendar
+        handleDateClick={handleDateClick}
+        nextDaysArr={nextDaysArr}
+        numberOfDays={numberOfDays}
+      />
     </div>
   );
 };
-
-export default HomePage;

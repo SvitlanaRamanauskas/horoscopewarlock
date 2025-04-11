@@ -1,0 +1,13 @@
+.footer {
+  height: 200px;
+  background-color: var(--main-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__text {
+    font-size: 20px;
+    font-weight: 100;
+    color: var(--primary-color);
+  }
+}
