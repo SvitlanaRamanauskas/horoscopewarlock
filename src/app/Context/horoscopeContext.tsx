@@ -13,6 +13,8 @@ type HoroscopeContextType = {
   setSelectedDate: (date: string) => void;
   zodiacRates: LifeFields | null;
   setZodiacRates: (rates: LifeFields) => void;
+  darkMode: boolean;
+  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const DEFAULT_ZODIAC = Zodiacs.Aries;
@@ -24,6 +26,7 @@ export const HoroscopeProvider = ({ children }: { children: React.ReactNode }) =
   const [selectedZodiac, setSelectedZodiac] = useState<Zodiacs>(DEFAULT_ZODIAC);
   const [selectedDate, setSelectedDate] = useState<string>(DEFAULT_DATE);
   const [zodiacRates, setZodiacRates] = useState<LifeFields | null>(null);
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     const storedZodiac = localStorage.getItem("zodiac");
@@ -46,7 +49,8 @@ export const HoroscopeProvider = ({ children }: { children: React.ReactNode }) =
 
   return (
     <HoroscopeContext.Provider
-      value={{ selectedZodiac, setSelectedZodiac, selectedDate, setSelectedDate, zodiacRates, setZodiacRates }}
+      value={{ selectedZodiac, setSelectedZodiac, selectedDate,
+         setSelectedDate, zodiacRates, setZodiacRates, darkMode, setDarkMode }}
     >
       {children}
     </HoroscopeContext.Provider>

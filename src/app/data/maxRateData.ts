@@ -1,5 +1,5 @@
 export const  MAX_RATE_IMAGES: Record<string, string> = {
-  "love": "/images/rate/couple.jpg",
-  "health": "/images/rate/health.jpg",
-  "career": "/images/rate/career.jpg",
+  "love": "/images/rate/couple.png",
+  "health": "/images/rate/health.png",
+  "career": "/images/rate/career.png",
 }

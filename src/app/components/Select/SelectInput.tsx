@@ -4,6 +4,7 @@ import cn from "classnames";
 import { Zodiacs } from "@/app/types/zodiacs";
 import { ZODIAC_DATA } from "@/app/data/zodiacData";
 import styles from "./SelectInput.module.scss";
+import { useHoroscope } from "@/app/context/horoscopeContext";
 
 type SelectProps = {
   label: string;
@@ -22,6 +23,8 @@ export const SelectInput: React.FC<SelectProps> = ({
 }) => {
   const [isSelectFocused, setIsSelectFocused] = useState(false);
 
+  const { darkMode } = useHoroscope();
+
   const handleSelectBlur = () => {
     setIsSelectFocused(false);
   };
@@ -34,7 +37,9 @@ export const SelectInput: React.FC<SelectProps> = ({
     <div className={cn(styles.dropdown__input, {
       [styles["dropdown__input--focused"]]: isSelectFocused,
     })}>
-      <label htmlFor="select" className={styles["dropdown__input-label"]}>
+      <label htmlFor="select" className={cn(styles["dropdown__input-label"], {
+        [styles["dropdown__input-label--dark"]] : darkMode
+      })}>
         {label}
       </label>
 
@@ -42,7 +47,9 @@ export const SelectInput: React.FC<SelectProps> = ({
         onChange={onChangeHandler}
         value={value}
         name="select"
-        className={styles["dropdown__select"]}
+        className={cn(styles.dropdown__select, {
+          [styles["dropdown__select--dark"]]: darkMode,
+        })}
         onBlur={handleSelectBlur}
         onClick={handleSelectFocus}
       >

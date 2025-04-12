@@ -1,11 +1,15 @@
 import { CopyLinkButton } from "@/app/components/copyLinkButton";
 import { lifeFieldsPrediction } from "@/app/data/lifeFieldsData";
-import styles from './zodiacPredictionPage.module.scss';
+import styles from "./zodiacPredictionPage.module.scss";
 import { MAX_RATE_IMAGES } from "@/app/data/maxRateData";
 import { ZODIAC_DATA } from "@/app/data/zodiacData";
 import { generateLifeFieldsRate, getMaxField } from "@/app/helper/generator";
 import { Zodiacs } from "@/app/types/zodiacs";
 import Image from "next/image";
+
+import IconHealth from "../../../assets/icons-dark-theme/health-dark-theme.svg";
+import IconLove from "../../../assets/icons-dark-theme/love-dark-theme.svg";
+import IconCareer from "../../../assets/icons-dark-theme/career.svg";
 
 interface PageProps {
   params: {
@@ -21,21 +25,48 @@ const ZodiacPredictionPage = async ({ params }: PageProps) => {
   const moodImage = MAX_RATE_IMAGES[getMaxField(zodiacRates)];
 
   return (
-    <div className={styles.zodiac}>
-      <h2>{`Гороскоп для ${ZODIAC_DATA[sign].name} на ${date}`}</h2>
+    <div  style={{
+      backgroundColor: "black",
+    }}>
+      <div className={styles.zodiac}>
+        <h2
+          className={styles.zodiac__title}
+        >{`${ZODIAC_DATA[sign].name} | гороскоп на ${date}-2025`}</h2>
 
-      <div className="zodiac__images">
-        <Image src={ZODIAC_DATA[sign].image} alt="знак зодіаку" width={100} height={100} />
-        <Image src={moodImage} alt="настрій" width={100} height={100} />
+        <section className={styles.zodiac__section}>
+          <div className={styles.zodiac__image}>
+            <Image src={moodImage} alt="настрій" width={100} height={100} />
+          </div>
+          <ul className={styles["zodiac__description-list"]}>
+            <li className={styles.zodiac__description}>
+              <Image alt="здоровя" src={IconHealth} width={30} height={30} />
+              <p>{lifeFieldsPrediction.health[zodiacRates.health]}</p>
+            </li>
+
+            <li className={styles.zodiac__description}>
+              <Image alt="стосунки" src={IconLove} width={30} height={30} />
+              <p>{lifeFieldsPrediction.love[zodiacRates.love]}</p>
+            </li>
+
+            <li className={styles.zodiac__description}>
+              <Image alt="карєра" src={IconCareer} width={30} height={30} />
+              <p>{lifeFieldsPrediction.career[zodiacRates.career]}</p>
+            </li>
+          </ul>
+        </section>
+
+        <CopyLinkButton />
       </div>
 
-      <ul>
-        <li>{`Здоров'я: ${zodiacRates.health} → ${lifeFieldsPrediction.health[zodiacRates.health]}`}</li>
-        <li>{`Стосунки: ${zodiacRates.love} → ${lifeFieldsPrediction.love[zodiacRates.love]}`}</li>
-        <li>{`Кар'єра: ${zodiacRates.career} → ${lifeFieldsPrediction.career[zodiacRates.career]}`}</li>
-      </ul>
-
-      <CopyLinkButton />
+      <div
+        style={{
+          backgroundImage: `url(${ZODIAC_DATA[sign].image})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "top",
+          height: "500px",
+        }}
+      ></div>
     </div>
   );
 };

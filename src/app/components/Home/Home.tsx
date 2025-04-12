@@ -37,11 +37,13 @@ export const Home = () => {
     selectedDate,
     setSelectedDate,
     setZodiacRates,
+    darkMode,
+    setDarkMode,
   } = useHoroscope();
 
   const [numberOfDays, setNumberOfDays] = useState(DEFAULT_DAYS);
   const [nextDaysArr, setNextDaysArr] = useState(getNextDays(DEFAULT_DAYS));
-  const [darkMode, setDarkMode] = useState(false);
+  const [catFact, setCatFact] = useState("");
 
   useEffect(() => {
     const storedZodiac = localStorage.getItem("zodiac");
@@ -83,6 +85,16 @@ export const Home = () => {
     }
   }, [numberOfDays, zodiacFromUrl, dateFromUrl]);
 
+  const fetchCat = async () => {
+    try {
+      const res = await fetch("https://catfact.ninja/fact");
+      const data = await res.json();
+      setCatFact(data.fact);
+    } catch (error) {
+      console.error("Не вдалося факт про котика", error);
+    }
+  };
+
   const handleZodiacChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const zodiac = e.target.value as Zodiacs;
     setSelectedZodiac(zodiac);
@@ -104,6 +116,7 @@ export const Home = () => {
     router.push(`/prognose/${zodiac}/${date}`);
 
     if (cat) {
+      fetchCat();
     }
   };
 
@@ -113,36 +126,39 @@ export const Home = () => {
     setNextDaysArr(getNextDays(newNumberOfDays));
   };
 
-  const handleCancelSelections = () => {
-    localStorage.clear();
-    setSelectedZodiac(DEFAULT_ZODIAC);
-    setSelectedDate(getCurrentDate());
-    setNextDaysArr(getNextDays(DEFAULT_DAYS));
-  };
-
   return (
     <div className={cn(styles.home, { [styles["home--dark"]]: darkMode })}>
-      <h2
+      <div
         className={cn(styles.home__title, {
           [styles["home__title--dark"]]: darkMode,
         })}
       >
-        Дізнайся у Warlock, що чекає на тебе
-      </h2>
+        <h2>Дізнайся у Warlock, що чекає на тебе</h2>
+        <p className={styles["home__title-cat-fact"]}>{catFact}</p>
+      </div>
 
-      <button onClick={handleCancelSelections}>Скасувати вибір</button>
+      <div className={styles["home__header"]}>
+        <div className={styles["home__image-circle"]}>
+          <Image
+            className={styles["home__image"]}
+            alt="твій зодіак"
+            src={ZODIAC_DATA[selectedZodiac].image}
+            width={150}
+            height={150}
+          />
+        </div>
 
-      <section className={styles.home__top}>
-        <div className={styles["home__top-wrapper"]}>
-          <div className={styles["home__image-circle"]}>
-            <Image
-              className={styles["home__image"]}
-              alt="твій зодіак"
-              src={ZODIAC_DATA[selectedZodiac].image}
-              width={200}
-              height={200}
-            />
-          </div>
+        <section className={styles.home__top}>
+          <button
+            className={styles["mode"]}
+            onClick={() => setDarkMode((prev) => !prev)}
+          >
+            <div
+              className={cn(styles.mode__circle, {
+                [styles["mode__circle--dark"]]: darkMode,
+              })}
+            ></div>
+          </button>
 
           <SelectInput
             label="Знак зодіаку"
@@ -160,12 +176,8 @@ export const Home = () => {
               { value: 3, label: "3" },
             ]}
           />
-
-          <button className="mode" onClick={() => setDarkMode((prev) => !prev)}>
-            <div className="mode__circle"></div>
-          </button>
-        </div>
-      </section>
+        </section>
+      </div>
 
       <Calendar
         handleDateClick={handleDateClick}

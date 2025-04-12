@@ -25,6 +25,11 @@
     &-label {
       font-family: Montserrat-Alternates, sans-serif;
       color: var(--primary-color);
+      text-transform: uppercase;
+
+      &--dark {
+        color: var(--main-color);
+      }
     }
   }
 
@@ -50,6 +55,14 @@
       outline: none;
       border-color: var(--primary-color);
       color: var(--primary-color);
+    }
+
+    &--dark {
+      color: var(--main-color);
+
+      &:focus {
+        background-color: var(--main-color);
+      }
     }
   }
 
