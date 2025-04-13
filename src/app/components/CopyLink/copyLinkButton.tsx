@@ -1,8 +1,8 @@
 'use client';
 
-import Image from "next/image";
-import styles from "./copyLink.module.scss";
-import IconCopy from "../../assets/icons/copy.svg";
+import Image from 'next/image';
+import styles from './copyLink.module.scss';
+import IconCopy from '../../assets/icons/copy.svg';
 
 export const CopyLinkButton = () => {
   const handleCopy = () => {

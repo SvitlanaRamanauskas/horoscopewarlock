@@ -1,10 +1,10 @@
-"use client"
-import React, { useState } from "react";
-import cn from "classnames";
-import { Zodiacs } from "@/app/types/zodiacs";
-import { ZODIAC_DATA } from "@/app/data/zodiacData";
-import styles from "./SelectInput.module.scss";
-import { useHoroscope } from "@/app/context/horoscopeContext";
+'use client';
+import React, { useState } from 'react';
+import cn from 'classnames';
+import { Zodiacs } from '@/app/types/zodiacs';
+import { ZODIAC_DATA } from '@/app/data/zodiacData';
+import styles from './SelectInput.module.scss';
+import { useHoroscope } from '@/app/context/horoscopeContext';
 
 type SelectProps = {
   label: string;
@@ -35,10 +35,10 @@ export const SelectInput: React.FC<SelectProps> = ({
 
   return (
     <div className={cn(styles.dropdown__input, {
-      [styles["dropdown__input--focused"]]: isSelectFocused,
+      [styles['dropdown__input--focused']]: isSelectFocused,
     })}>
-      <label htmlFor="select" className={cn(styles["dropdown__input-label"], {
-        [styles["dropdown__input-label--dark"]] : darkMode
+      <label htmlFor="select" className={cn(styles['dropdown__input-label'], {
+        [styles['dropdown__input-label--dark']] : darkMode
       })}>
         {label}
       </label>
@@ -48,7 +48,7 @@ export const SelectInput: React.FC<SelectProps> = ({
         value={value}
         name="select"
         className={cn(styles.dropdown__select, {
-          [styles["dropdown__select--dark"]]: darkMode,
+          [styles['dropdown__select--dark']]: darkMode,
         })}
         onBlur={handleSelectBlur}
         onClick={handleSelectFocus}
@@ -56,7 +56,7 @@ export const SelectInput: React.FC<SelectProps> = ({
         {isZodiacSelect ? (
           Object.keys(ZODIAC_DATA).map((key) => (
             <option
-              className={styles["select-input__option"]}
+              className={styles['select-input__option']}
               key={key}
               value={key}
             >
@@ -66,7 +66,7 @@ export const SelectInput: React.FC<SelectProps> = ({
         ) : (
           options.map((option) => (
             <option
-              className={styles["dropdown__option"]}
+              className={styles['dropdown__option']}
               key={option.value}
               value={option.value}
             >

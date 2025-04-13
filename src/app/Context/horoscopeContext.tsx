@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { createContext, useContext, useState, useEffect } from "react";
-import { LifeFields } from "../types/lifeFields";
-import { Zodiacs } from "../types/zodiacs";
-import { generateLifeFieldsRate } from "../helper/generator";
-import { getCurrentDate } from "../helper/curentDate";
+import { createContext, useContext, useState, useEffect } from 'react';
+import { LifeFields } from '../types/lifeFields';
+import { Zodiacs } from '../types/zodiacs';
+import { generateLifeFieldsRate } from '../helper/generator';
+import { getCurrentDate } from '../helper/curentDate';
 
 type HoroscopeContextType = {
   selectedZodiac: Zodiacs;
@@ -29,9 +29,9 @@ export const HoroscopeProvider = ({ children }: { children: React.ReactNode }) =
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    const storedZodiac = localStorage.getItem("zodiac");
-    const storedDate = localStorage.getItem("date");
-    const storedRates = localStorage.getItem("zodiacRates");
+    const storedZodiac = localStorage.getItem('zodiac');
+    const storedDate = localStorage.getItem('date');
+    const storedRates = localStorage.getItem('zodiacRates');
 
     const zodiac = storedZodiac ? JSON.parse(storedZodiac) : DEFAULT_ZODIAC;
     const date = storedDate ? JSON.parse(storedDate) : DEFAULT_DATE;
@@ -50,7 +50,7 @@ export const HoroscopeProvider = ({ children }: { children: React.ReactNode }) =
   return (
     <HoroscopeContext.Provider
       value={{ selectedZodiac, setSelectedZodiac, selectedDate,
-         setSelectedDate, zodiacRates, setZodiacRates, darkMode, setDarkMode }}
+        setSelectedDate, zodiacRates, setZodiacRates, darkMode, setDarkMode }}
     >
       {children}
     </HoroscopeContext.Provider>
@@ -60,7 +60,7 @@ export const HoroscopeProvider = ({ children }: { children: React.ReactNode }) =
 export const useHoroscope = () => {
   const context = useContext(HoroscopeContext);
   if (!context) {
-    throw new Error("useHoroscope must be used within a HoroscopeProvider");
+    throw new Error('useHoroscope must be used within a HoroscopeProvider');
   }
   return context;
 };

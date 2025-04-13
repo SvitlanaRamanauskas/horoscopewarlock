@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import { useHoroscope } from "@/app/context/horoscopeContext";
-import { getStrDate } from "@/app/helper/nextDays";
-import { AdaptedDate } from "@/app/types/date";
-import styles from "./date.module.scss";
-import Image from "next/image";
-import IconHealth from "../../assets/icons/health.svg";
-import IconLove from "../../assets/icons/love.svg";
-import IconCareer from "../../assets/icons/career.svg";
+import { useHoroscope } from '@/app/context/horoscopeContext';
+import { getStrDate } from '@/app/helper/nextDays';
+import { AdaptedDate } from '@/app/types/date';
+import styles from './date.module.scss';
+import Image from 'next/image';
+import IconHealth from '../../assets/icons/health.svg';
+import IconLove from '../../assets/icons/love.svg';
+import IconCareer from '../../assets/icons/career.svg';
 
-import IconHealthDark from "../../assets/icons-dark-theme/health-dark-theme.svg";
-import IconLoveDark from "../../assets/icons-dark-theme/love-dark-theme.svg";
-import IconCareerDark from "../../assets/icons-dark-theme/career.svg";
-import { generateLifeFieldsRate } from "@/app/helper/generator";
-import cn from "classnames";
+import IconHealthDark from '../../assets/icons-dark-theme/health-dark-theme.svg';
+import IconLoveDark from '../../assets/icons-dark-theme/love-dark-theme.svg';
+import IconCareerDark from '../../assets/icons-dark-theme/career.svg';
+import { generateLifeFieldsRate } from '@/app/helper/generator';
+import cn from 'classnames';
 
 type Props = {
   date: AdaptedDate;
@@ -29,20 +29,20 @@ export const Date: React.FC<Props> = ({ date, handleDateClick }) => {
   return (
     <li key={date.day} className={cn(
       styles.date, 
-      { [styles["date--selected"]]: selectedDate === getStrDate(date) },
-      { [styles["date--dark"]]: darkMode}
-      )}>
+      { [styles['date--selected']]: selectedDate === getStrDate(date) },
+      { [styles['date--dark']]: darkMode}
+    )}>
       <button
-        className={cn(styles.date__box, { [styles["date__box--dark"]]: darkMode })}
+        className={cn(styles.date__box, { [styles['date__box--dark']]: darkMode })}
         onClick={() => handleDateClick(date)}
       >
-        <p className={cn(`${styles["date__text"]} ${styles["date__weekday"]}`, {
-          [styles["date__weekday--dark"]]: darkMode
+        <p className={cn(`${styles['date__text']} ${styles['date__weekday']}`, {
+          [styles['date__weekday--dark']]: darkMode
         })}>
           {date.weekday}
         </p>
         <p
-          className={`${styles["date__text"]} ${styles["date__num"]}`}
+          className={`${styles['date__text']} ${styles['date__num']}`}
         >{`${date.day} ${date.month}`}</p>
 
         {zodiacRates && getStrDate(date) && (

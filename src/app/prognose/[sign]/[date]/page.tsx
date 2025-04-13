@@ -1,15 +1,15 @@
-import { CopyLinkButton } from "@/app/components/CopyLink/copyLinkButton";
-import { lifeFieldsPrediction } from "@/app/data/lifeFieldsData";
-import styles from "./zodiacPredictionPage.module.scss";
-import { MAX_RATE_IMAGES } from "@/app/data/maxRateData";
-import { ZODIAC_DATA } from "@/app/data/zodiacData";
-import { generateLifeFieldsRate, getMaxField } from "@/app/helper/generator";
-import { Zodiacs } from "@/app/types/zodiacs";
-import Image from "next/image";
+import { CopyLinkButton } from '@/app/components/CopyLink/copyLinkButton';
+import { lifeFieldsPrediction } from '@/app/data/lifeFieldsData';
+import styles from './zodiacPredictionPage.module.scss';
+import { MAX_RATE_IMAGES } from '@/app/data/maxRateData';
+import { ZODIAC_DATA } from '@/app/data/zodiacData';
+import { generateLifeFieldsRate, getMaxField } from '@/app/helper/generator';
+import { Zodiacs } from '@/app/types/zodiacs';
+import Image from 'next/image';
 
-import IconHealth from "../../../assets/icons-dark-theme/health-dark-theme.svg";
-import IconLove from "../../../assets/icons-dark-theme/love-dark-theme.svg";
-import IconCareer from "../../../assets/icons-dark-theme/career.svg";
+import IconHealth from '../../../assets/icons-dark-theme/health-dark-theme.svg';
+import IconLove from '../../../assets/icons-dark-theme/love-dark-theme.svg';
+import IconCareer from '../../../assets/icons-dark-theme/career.svg';
 
 interface PageProps {
   params: {
@@ -26,7 +26,7 @@ const ZodiacPredictionPage = async ({ params }: PageProps) => {
 
   return (
     <div  style={{
-      backgroundColor: "black",
+      backgroundColor: 'black',
     }}>
       <div className={styles.zodiac}>
         <h2
@@ -37,7 +37,7 @@ const ZodiacPredictionPage = async ({ params }: PageProps) => {
           <div className={styles.zodiac__image}>
             <Image src={moodImage} alt="настрій" width={100} height={100} />
           </div>
-          <ul className={styles["zodiac__description-list"]}>
+          <ul className={styles['zodiac__description-list']}>
             <li className={styles.zodiac__description}>
               <Image alt="здоровя" src={IconHealth} width={30} height={30} />
               <p>{lifeFieldsPrediction.health[zodiacRates.health]}</p>
@@ -61,10 +61,10 @@ const ZodiacPredictionPage = async ({ params }: PageProps) => {
       <div
         style={{
           backgroundImage: `url(${ZODIAC_DATA[sign].image})`,
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "top",
-          height: "500px",
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'top',
+          height: '500px',
         }}
       ></div>
     </div>
