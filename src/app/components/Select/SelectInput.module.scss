@@ -1,3 +1,5 @@
+@import "../../styles/mixins"; 
+
 .dropdown {
   &__input {
     position: relative;
@@ -41,13 +43,18 @@
     color: var(--not-active);
     background-color: transparent;
     height: 30px;
-    width: 120px;
+    width: 80px;
     padding-left: 8px;
     border: 0.5px solid var(--not-active);
     border-radius: 8px;
     position: relative;
     z-index: 2;
     cursor: pointer;
+
+    @include on-tablet {
+      width: 120px;
+    }
+
     &:hover {
       border-color: var(--secondary-color);
     }

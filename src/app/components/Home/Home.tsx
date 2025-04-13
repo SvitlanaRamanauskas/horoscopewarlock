@@ -138,13 +138,13 @@ export const Home = () => {
       </div>
 
       <div className={styles["home__header"]}>
-        <div className={styles["home__image-circle"]}>
+        <div className={styles["home__image-frame"]}>
           <Image
             className={styles["home__image"]}
             alt="твій зодіак"
             src={ZODIAC_DATA[selectedZodiac].image}
-            width={150}
-            height={150}
+            width={250}
+            height={250}
           />
         </div>
 

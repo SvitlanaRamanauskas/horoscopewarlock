@@ -1,3 +1,5 @@
+@import "../../../styles/mixins.scss"; 
+
 .zodiac {
   background-color: black;
   margin: 0 auto;
@@ -6,17 +8,29 @@
   justify-content: center;
   align-items: center;
   gap: 30px;
-  height: 300px;
+  height: 600px;
   color: var(--main-color);
+  padding-inline: 15px;
+
+
+  @include on-tablet {
+    height: 300px;
+  }
 
   &__title {
     font-size: 28px;
+    text-align: center;
   }
 
   &__section {
     max-width: 1000px;
     display: flex;
+    flex-direction: column;
     gap: 20px;
+
+    @include on-tablet {
+      flex-direction: row;
+    }
   }
 
   &__description {
