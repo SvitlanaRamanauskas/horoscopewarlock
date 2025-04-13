@@ -1,4 +1,4 @@
-import { CopyLinkButton } from "@/app/components/copyLinkButton";
+import { CopyLinkButton } from "@/app/components/CopyLink/copyLinkButton";
 import { lifeFieldsPrediction } from "@/app/data/lifeFieldsData";
 import styles from "./zodiacPredictionPage.module.scss";
 import { MAX_RATE_IMAGES } from "@/app/data/maxRateData";

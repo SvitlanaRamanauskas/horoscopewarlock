@@ -55,7 +55,7 @@ export const Date: React.FC<Props> = ({ date, handleDateClick }) => {
                   width={15}
                   height={15}
                 />
-                <p>здоровя</p>
+                <p>здоров&apos;я</p>
               </div>
 
               <p className={styles.date__body}>{`${rates.health} балів`}</p>
@@ -83,7 +83,7 @@ export const Date: React.FC<Props> = ({ date, handleDateClick }) => {
                   width={15}
                   height={15}
                 />
-                <p>карєра</p>
+                <p>кар&apos;єра</p>
               </div>
               
               <p className={styles.date__body}>{`${rates.career} балів`}</p>
