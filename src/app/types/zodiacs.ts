@@ -16,6 +16,5 @@ export enum Zodiacs {
 export type ZodiacInfo = {
   name: string;
   dateRange: { from: string; to: string };
-  icon: React.ReactNode;
   image: string;
 };

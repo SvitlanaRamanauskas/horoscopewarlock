@@ -14,12 +14,6 @@ export const generateLifeFieldsRate = (date: string, sign: string): LifeFields =
   return { health, love, career };
 };
 
-export const getKeyAcpect = (fields: LifeFields) => {
-  const entries = Object.entries(fields);
-  entries.sort((a, b) => b[1] - a[1]);
-  return entries[0][0];
-};
-
 export const getAverageRate = (rating: LifeFields) => {
   return (rating.career + rating.health + rating.love) / 3;
 };
