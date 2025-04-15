@@ -20,6 +20,7 @@ import { ZODIAC_DATA } from '../../data/zodiacData';
 import { useHoroscope } from '../../context/horoscopeContext';
 import { SelectInput } from '../Select/SelectInput';
 import { Calendar } from '../Calendar/Calendar';
+import { Mode } from '../Mode/Mode';
 
 const DEFAULT_ZODIAC = Zodiacs.Aries;
 const DEFAULT_DAYS = 7;
@@ -91,7 +92,7 @@ export const Home = () => {
       const data = await res.json();
       setCatFact(data.fact);
     } catch (error) {
-      console.error('Не вдалося факт про котика', error);
+      console.error('Не вдалося завантажити факт про котика', error);
     }
   };
 
@@ -149,16 +150,7 @@ export const Home = () => {
         </div>
 
         <section className={styles.home__top}>
-          <button
-            className={styles['mode']}
-            onClick={() => setDarkMode((prev) => !prev)}
-          >
-            <div
-              className={cn(styles.mode__circle, {
-                [styles['mode__circle--dark']]: darkMode,
-              })}
-            ></div>
-          </button>
+          <Mode darkMode={darkMode} setDarkMode={setDarkMode} />
 
           <SelectInput
             label="Знак зодіаку"

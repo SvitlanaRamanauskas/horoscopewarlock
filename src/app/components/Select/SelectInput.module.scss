@@ -7,7 +7,6 @@
     flex-direction: row;
     align-items: center;
     gap: 15px;
-    padding-bottom: 24px;
 
     &::after {
       content: url(../../assets/icons/arrow--disabled.svg);
@@ -17,11 +16,11 @@
       width: 16px;
       top: 50%;
       right: 10px;
-      transform: translateY(-115%) rotate(90deg);
+      transform: translateY(-50%) rotate(90deg);
     }
 
     &--focused::after {
-      transform:translateY(-115%)  rotate(270deg);
+      transform:translateY(-50%)  rotate(270deg);
     }  
 
     &-label {
@@ -43,7 +42,7 @@
     color: var(--not-active);
     background-color: transparent;
     height: 30px;
-    width: 80px;
+    width: 100px;
     padding-left: 8px;
     border: 0.5px solid var(--not-active);
     border-radius: 8px;
@@ -74,7 +73,6 @@
   }
 
   &__option {
-    border: 1px solid blue;
     box-shadow: 0 2px 15px 0 #0000000D;
     background-color: transparent;
     border-radius: none;
@@ -86,9 +84,5 @@
     text-align: left;
     height: 32px;
     padding-block: 5px;
-    &:hover {
-      color: red;
-      background-color: green;
-    }
   }
 }

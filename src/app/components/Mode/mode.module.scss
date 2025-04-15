@@ -1,0 +1,39 @@
+.mode {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+
+  &__title {
+    text-transform: uppercase;
+    font-family: Montserrat-Alternates, sans-serif;;
+  }
+
+  &__button {
+    height: 30px;
+    width: 60px;
+    background-color: var(--secondary-color);
+    border-radius: 60px;
+    border: 1px solid var(--not-active);
+    position: relative;
+    transition: left 0.3s ease;
+    cursor: pointer;
+  }
+
+  &__circle {
+    position: absolute;
+    left: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: var(--bg-color);
+    transition: left 0.3s;
+
+    &--dark {
+      left: 28px;
+      background-color: var(--primary-color);
+    }
+  }
+}
