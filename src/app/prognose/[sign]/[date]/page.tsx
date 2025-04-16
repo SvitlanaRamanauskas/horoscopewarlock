@@ -11,17 +11,14 @@ import IconHealth from '../../../assets/icons-dark-theme/health-dark-theme.svg';
 import IconLove from '../../../assets/icons-dark-theme/love-dark-theme.svg';
 import IconCareer from '../../../assets/icons-dark-theme/career.svg';
 
-interface PageProps {
-  params: {
-    sign: Zodiacs;
-    date: string;
-  };
-}
 
-const ZodiacPredictionPage = async ({ params }: PageProps) => {
+const ZodiacPredictionPage = async ({ params }: {
+  params: { sign: string; date: string };
+}
+) => {
   const { sign, date } = await params;
 
-  const zodiacRates = generateLifeFieldsRate(date, sign);
+  const zodiacRates = generateLifeFieldsRate(date, sign as Zodiacs);
   const moodImage = MAX_RATE_IMAGES[getMaxField(zodiacRates)];
 
   return (
@@ -31,7 +28,7 @@ const ZodiacPredictionPage = async ({ params }: PageProps) => {
       <div className={styles.zodiac}>
         <h2
           className={styles.zodiac__title}
-        >{`${ZODIAC_DATA[sign].name} | гороскоп на ${date}-2025`}</h2>
+        >{`${ZODIAC_DATA[sign as Zodiacs].name} | гороскоп на ${date}-2025`}</h2>
 
         <section className={styles.zodiac__section}>
           <div className={styles.zodiac__image}>
@@ -60,7 +57,7 @@ const ZodiacPredictionPage = async ({ params }: PageProps) => {
 
       <div
         style={{
-          backgroundImage: `url(${ZODIAC_DATA[sign].image})`,
+          backgroundImage: `url(${ZODIAC_DATA[sign as Zodiacs].image})`,
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'top',
