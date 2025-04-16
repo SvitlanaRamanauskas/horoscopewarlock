@@ -1,9 +1,8 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { LifeFields } from '../types/lifeFields';
 import { Zodiacs } from '../types/zodiacs';
-import { generateLifeFieldsRate } from '../helper/generator';
 import { getCurrentDate } from '../helper/curentDate';
 
 type HoroscopeContextType = {
@@ -28,24 +27,6 @@ export const HoroscopeProvider = ({ children }: { children: React.ReactNode }) =
   const [zodiacRates, setZodiacRates] = useState<LifeFields | null>(null);
   const [darkMode, setDarkMode] = useState(false);
 
-  useEffect(() => {
-    const storedZodiac = localStorage.getItem('zodiac');
-    const storedDate = localStorage.getItem('date');
-    const storedRates = localStorage.getItem('zodiacRates');
-
-    const zodiac = storedZodiac ? JSON.parse(storedZodiac) : DEFAULT_ZODIAC;
-    const date = storedDate ? JSON.parse(storedDate) : DEFAULT_DATE;
-
-    setSelectedZodiac(zodiac);
-    setSelectedDate(date);
-
-    if (storedRates) {
-      setZodiacRates(JSON.parse(storedRates));
-    } else {
-      const rates = generateLifeFieldsRate(date, zodiac);
-      setZodiacRates(rates);
-    }
-  }, []);
 
   return (
     <HoroscopeContext.Provider
