@@ -16,7 +16,7 @@ const ZodiacPredictionPage = async ({ params }: {
   params: { sign: string; date: string };
 }
 ) => {
-  const { sign, date } = await params;
+  const { sign, date } = params;
 
   const zodiacRates = generateLifeFieldsRate(date, sign as Zodiacs);
   const moodImage = MAX_RATE_IMAGES[getMaxField(zodiacRates)];
