@@ -1,5 +1,5 @@
 import './styles/global.scss';
-import { HoroscopeProvider } from './context/horoscopeContext';
+import { HoroscopeProvider } from './appcontext/horoscopeContext';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
 import { Home } from './components/Home/Home';

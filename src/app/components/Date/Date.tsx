@@ -1,6 +1,6 @@
 'use client';
 
-import { useHoroscope } from '../../context/horoscopeContext';
+import { useHoroscope } from '../../appcontext/horoscopeContext';
 import { getStrDate } from '@/app/helper/nextDays';
 import { AdaptedDate } from '@/app/types/date';
 import styles from './date.module.scss';
@@ -27,18 +27,25 @@ export const Date: React.FC<Props> = ({ date, handleDateClick }) => {
   const { darkMode } = useHoroscope();
 
   return (
-    <li key={date.day} className={cn(
-      styles.date, 
-      { [styles['date--selected']]: selectedDate === getStrDate(date) },
-      { [styles['date--dark']]: darkMode}
-    )}>
+    <li
+      key={date.day}
+      className={cn(
+        styles.date,
+        { [styles['date--selected']]: selectedDate === getStrDate(date) },
+        { [styles['date--dark']]: darkMode }
+      )}
+    >
       <button
-        className={cn(styles.date__box, { [styles['date__box--dark']]: darkMode })}
+        className={cn(styles.date__box, {
+          [styles['date__box--dark']]: darkMode,
+        })}
         onClick={() => handleDateClick(date)}
       >
-        <p className={cn(`${styles['date__text']} ${styles['date__weekday']}`, {
-          [styles['date__weekday--dark']]: darkMode
-        })}>
+        <p
+          className={cn(`${styles['date__text']} ${styles['date__weekday']}`, {
+            [styles['date__weekday--dark']]: darkMode,
+          })}
+        >
           {date.weekday}
         </p>
         <p
@@ -71,7 +78,7 @@ export const Date: React.FC<Props> = ({ date, handleDateClick }) => {
                 />
                 <p>стосунки</p>
               </div>
-              
+
               <p className={styles.date__body}>{`${rates.love} балів`}</p>
             </li>
 
@@ -85,7 +92,7 @@ export const Date: React.FC<Props> = ({ date, handleDateClick }) => {
                 />
                 <p>кар&apos;єра</p>
               </div>
-              
+
               <p className={styles.date__body}>{`${rates.career} балів`}</p>
             </li>
           </ul>

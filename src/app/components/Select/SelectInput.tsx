@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { Zodiacs } from '@/app/types/zodiacs';
 import { ZODIAC_DATA } from '@/app/data/zodiacData';
 import styles from './SelectInput.module.scss';
-import { useHoroscope } from '@/app/context/horoscopeContext';
+import { useHoroscope } from '@/app/appcontext/horoscopeContext';
 
 type SelectProps = {
   label: string;
@@ -34,12 +34,17 @@ export const SelectInput: React.FC<SelectProps> = ({
   };
 
   return (
-    <div className={cn(styles.dropdown__input, {
-      [styles['dropdown__input--focused']]: isSelectFocused,
-    })}>
-      <label htmlFor="select" className={cn(styles['dropdown__input-label'], {
-        [styles['dropdown__input-label--dark']] : darkMode
-      })}>
+    <div
+      className={cn(styles.dropdown__input, {
+        [styles['dropdown__input--focused']]: isSelectFocused,
+      })}
+    >
+      <label
+        htmlFor="select"
+        className={cn(styles['dropdown__input-label'], {
+          [styles['dropdown__input-label--dark']]: darkMode,
+        })}
+      >
         {label}
       </label>
 
@@ -53,8 +58,8 @@ export const SelectInput: React.FC<SelectProps> = ({
         onBlur={handleSelectBlur}
         onClick={handleSelectFocus}
       >
-        {isZodiacSelect ? (
-          Object.keys(ZODIAC_DATA).map((key) => (
+        {isZodiacSelect
+          ? Object.keys(ZODIAC_DATA).map((key) => (
             <option
               className={styles['select-input__option']}
               key={key}
@@ -63,8 +68,7 @@ export const SelectInput: React.FC<SelectProps> = ({
               {ZODIAC_DATA[key as Zodiacs].name}
             </option>
           ))
-        ) : (
-          options.map((option) => (
+          : options.map((option) => (
             <option
               className={styles['dropdown__option']}
               key={option.value}
@@ -72,8 +76,7 @@ export const SelectInput: React.FC<SelectProps> = ({
             >
               {option.label}
             </option>
-          ))
-        )}
+          ))}
       </select>
     </div>
   );

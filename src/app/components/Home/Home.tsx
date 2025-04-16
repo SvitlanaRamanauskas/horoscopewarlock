@@ -17,7 +17,7 @@ import { getNextDays, getStrDate } from '../../helper/nextDays';
 import { getCurrentDate } from '../../helper/curentDate';
 import { ZODIAC_DATA } from '../../data/zodiacData';
 
-import { useHoroscope } from '../../context/horoscopeContext';
+import { useHoroscope } from '../../appcontext/horoscopeContext';
 import { SelectInput } from '../Select/SelectInput';
 import { Calendar } from '../Calendar/Calendar';
 import { Mode } from '../Mode/Mode';
