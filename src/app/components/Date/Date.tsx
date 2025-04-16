@@ -1,6 +1,6 @@
 'use client';
 
-import { useHoroscope } from '@/app/context/horoscopeContext';
+import { useHoroscope } from '../../context/horoscopeContext';
 import { getStrDate } from '@/app/helper/nextDays';
 import { AdaptedDate } from '@/app/types/date';
 import styles from './date.module.scss';
