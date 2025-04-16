@@ -12,7 +12,7 @@ import IconLove from '../../../assets/icons-dark-theme/love-dark-theme.svg';
 import IconCareer from '../../../assets/icons-dark-theme/career.svg';
 
 
-const ZodiacPredictionPage = async ({ params }: {
+const ZodiacPredictionPage = ({ params }: {
   params: { sign: string; date: string };
 }
 ) => {
