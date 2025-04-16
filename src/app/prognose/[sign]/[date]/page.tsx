@@ -11,11 +11,14 @@ import IconHealth from '../../../assets/icons-dark-theme/health-dark-theme.svg';
 import IconLove from '../../../assets/icons-dark-theme/love-dark-theme.svg';
 import IconCareer from '../../../assets/icons-dark-theme/career.svg';
 
-
-const ZodiacPredictionPage = ({ params }: {
-  params: { sign: string; date: string };
+interface PageProps {
+  params: {
+    sign: Zodiacs;
+    date: string;
+  };
 }
-) => {
+
+const ZodiacPredictionPage = ({ params }: PageProps) => {
   const { sign, date } = params;
 
   const zodiacRates = generateLifeFieldsRate(date, sign as Zodiacs);
