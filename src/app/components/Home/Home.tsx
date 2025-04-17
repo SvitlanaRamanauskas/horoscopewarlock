@@ -84,7 +84,8 @@ export const Home = () => {
       setZodiacRates(rates);
       setNextDaysArr(getNextDays(numberOfDays));
     }
-  }, [numberOfDays, zodiacFromUrl, dateFromUrl]);
+  }, [numberOfDays, zodiacFromUrl, dateFromUrl, selectedDate,
+    selectedZodiac, setSelectedDate, setSelectedZodiac, setZodiacRates]);
 
   const fetchCat = async () => {
     try {

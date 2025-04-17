@@ -12,10 +12,10 @@ import IconLove from '../../../assets/icons-dark-theme/love-dark-theme.svg';
 import IconCareer from '../../../assets/icons-dark-theme/career.svg';
 
 interface PageProps {
-  params: {
+  params: Promise<{
     sign: Zodiacs;
     date: string;
-  };
+  }>;
 }
 
 const ZodiacPredictionPage = async ({ params }: PageProps) => {
