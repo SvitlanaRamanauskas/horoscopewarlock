@@ -18,8 +18,8 @@ interface PageProps {
   };
 }
 
-const ZodiacPredictionPage = ({ params }: PageProps) => {
-  const { sign, date } = params;
+const ZodiacPredictionPage = async ({ params }: PageProps) => {
+  const { sign, date } = await params;
 
   const zodiacRates = generateLifeFieldsRate(date, sign as Zodiacs);
   const moodImage = MAX_RATE_IMAGES[getMaxField(zodiacRates)];
