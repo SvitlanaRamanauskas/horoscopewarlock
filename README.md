@@ -4,6 +4,10 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 Це Next.js застосунок для генерації гороскопів за знаком зодіаку та датою.
 
+## Переглянути проект можна за посиланням: 
+
+> [DEMO](https://horoscopewarlock.vercel.app)
+
 ## 🛠️ Технології
 - [Next.js](https://nextjs.org/)
 - TypeScript
